@@ -33,7 +33,7 @@ module.exports = function(grunt)
                     {
                         expand: true,
                         cwd: "src/",
-                        src: ["js/main.js", "libs/**","admin/**", "fonts/**", "img/**","php/**", "index.php"],
+                        src: ["js/main.js", "libs/**", "fonts/**", "img/**","php/**","assets/**", "index.html"],
                         dest: "www"
                     }
 
@@ -51,14 +51,7 @@ module.exports = function(grunt)
                     compress: false
                 },
                 files: {
-                    'www/js/modules.min.js': ['src/js/modules/*.js']
-                }
-            }
-        },
-        mkdir: {
-            all: {
-                options: {
-                    create: ['www/uploads']
+                    'www/js/modules.min.js': ['src/js/*.js']
                 }
             }
         },
@@ -76,10 +69,8 @@ module.exports = function(grunt)
             },
             others: {
                 files: [
-                    'src/index.php',
-                    'src/admin/**',
+                    'src/index.html',
                     'src/js/**',
-                    'src/php/**'
                 ],
                 tasks:['copy:for_www', "uglify"]
             }
@@ -87,7 +78,7 @@ module.exports = function(grunt)
 
     });
 
-    grunt.registerTask("default", ["clean", "less", "copy:for_www", "mkdir", "uglify:development", "watch"]);
-    grunt.registerTask("run", ["clean", "less", "copy:for_www", "mkdir", "uglify:development", "watch"]);
+    grunt.registerTask("default", ["clean", "less", "copy:for_www", "uglify:development", "watch"]);
+    grunt.registerTask("run", ["clean", "less", "copy:for_www", "uglify:development", "watch"]);
 
 };
