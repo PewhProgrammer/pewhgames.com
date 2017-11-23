@@ -1,5 +1,7 @@
 # PewhGames HomePage
 
+A progressive web application optimized for responsive design.
+
 ### Patch Notes/Changes
 
 [ November ]
@@ -9,6 +11,7 @@
 
 ### Technology Stack
 
+* [MEAN]
 * [jQuery]
 * [Bootstrap]
 * [Grunt]        
