@@ -1,6 +1,6 @@
 # PewhGames HomePage
 
-A progressive web application optimized for responsive design.
+A progressive single-page web application optimized for responsive design.
 
 ### Patch Notes/Changes
 
