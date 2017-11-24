@@ -6,6 +6,7 @@ module.exports = function(grunt)
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-sync");
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-mkdir");
@@ -27,16 +28,11 @@ module.exports = function(grunt)
                 }
             }
         },
-        copy: {
-            for_www: {
+        sync: {
+            copy_resources_to_www: {
                 files: [
-                    {
-                        expand: true,
-                        cwd: "src/",
-                        src: ["js/main.js", "libs/**", "fonts/**", "img/**","php/**","assets/**", "index.html"],
-                        dest: "www"
-                    }
-
+                    { cwd: 'src', src:["js/**", "libs/**", "fonts/**", "img/**","php/**","assets/**","views/**", "index.html"], dest: 'www' },
+                    { cwd: 'src', src: 'res/**', dest: 'www' }
                 ]
             }
         },
@@ -72,13 +68,13 @@ module.exports = function(grunt)
                     'src/index.html',
                     'src/js/**',
                 ],
-                tasks:['copy:for_www', "uglify"]
+                tasks:["sync:copy_resources_to_www", "uglify"]
             }
         }
 
     });
 
-    grunt.registerTask("default", ["clean", "less", "copy:for_www", "uglify:development", "watch"]);
-    grunt.registerTask("run", ["clean", "less", "copy:for_www", "uglify:development", "watch"]);
+    grunt.registerTask("default", ["clean", "less",  "uglify:development", "watch","sync:copy_resources_to_www"]);
+    grunt.registerTask("run", ["clean", "less",  "uglify:development", "watch"]);
 
 };

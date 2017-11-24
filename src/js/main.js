@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
     $('#fullpage').fullpage({
-        anchors: ['firstPage', 'secondPage', '3rdPage'],
+        anchors: ['onePage', 'secondPage', '3rdPage'],
         autoScrolling: false,
         css3: true,
         fitToSection: false,
@@ -33,6 +33,27 @@ $(document).ready(function() {
         }
     });
 
+    var stickyNavTop = $('.nav').offset().top;
+
+    var stickyNav = function(){
+        var scrollTop = $(window).scrollTop();
+
+        if (scrollTop > stickyNavTop) {
+            $('#nav').addClass('sticky');
+            $('#nav').removeClass('static');
+            jQuery("nav").fadeTo(1500, 0.2);
+        } else {
+            $('#nav').removeClass('sticky');
+            $('#nav').addClass('static');
+            jQuery("nav").fadeTo(1500, 0.2);
+        }
+    };
+
+    stickyNav();
+
+    $(window).scroll(function() {
+        stickyNav();
+    });
 });
 
 function hideContent(){
@@ -45,11 +66,13 @@ function hideContent(){
 function showProfile(){
     $("#section03").show();
     $("#contentProfile").show();
+    window.history.pushState("", "", '/profile');
 }
 
 function showWork(){
     $("#section03").show();
     $("#contentWork").show();
+    window.history.pushState("", "", '/work');
 }
 
 $(function() {

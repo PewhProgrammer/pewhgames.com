@@ -7,6 +7,7 @@ html{
 .navbar-inverse{
   background-color: transparent;
   border-color:transparent;
+  height:5%;
 }
 
 .navbar-right{
@@ -16,12 +17,14 @@ html{
 /* Style for our header texts
  * --------------------------------------- */
 h1{
+  font-family: Georgia, helvetica, arial;
   font-size: 2.5em;
-  font-family: arial,helvetica;
-  color: #141823;
-  margin:0;
+  color: #fff;
+  font-style: italic;
+  margin-bottom: 35px;
   padding:0;
 }
+
 
 /* Style for Description */
 p .desc1{
@@ -104,6 +107,53 @@ p .desc1{
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
+
+/* Top Navigation Bar */
+
+.top-icons{
+  font-size:1.4em;
+  margin-top:1%;
+}
+
+.top-links{
+  font-size:0.9em;
+}
+.sticky {
+  position: fixed;
+  z-index: 100;
+  background-color: #333;
+  overflow: hidden;
+  background-size:cover;
+
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -ms-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
+}
+
+.static{
+
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -ms-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
+}
+
+.first {
+  height:100vh;
+  min-height:400px;
+  background-size:cover;
+  background-image:url('https://images.unsplash.com/photo-1470434151738-dc5f4474c239?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb');
+}
+
+section {
+  height:calc(90% - 50px);
+  height: 90vh;
+}
+
+/* END TOP NAV */
 
 .fp-slidesNav.bottom {
   top:2%;

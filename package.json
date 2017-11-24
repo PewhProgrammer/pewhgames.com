@@ -4,10 +4,11 @@
   "description": "Personal website",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.16.0",
-    "mongoose": "~4.13.4",
     "body-parser": "~1.4.2",
-    "method-override": "~2.0.2"
+    "express": "~4.16.0",
+    "grunt-sync": "^0.7.0",
+    "method-override": "~2.0.2",
+    "mongoose": "~4.13.4"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

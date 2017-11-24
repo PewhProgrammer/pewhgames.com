@@ -1,151 +1,292 @@
 <!DOCTYPE html>
-<html lang="en" style="overflow:hidden">
+<html lang="en">
 
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Background images - fullPage.js</title>
-    <meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="fullPage full-screen backgrounds." />
-    <meta name="keywords"  content="fullpage,jquery,full-screen" />
-    <meta name="Resource-type" content="Document" />
+    <meta name="author" content="Alvaro Trigo Lopez"/>
+    <meta name="description" content="fullPage full-screen backgrounds."/>
+    <meta name="keywords" content="fullpage,jquery,full-screen"/>
+    <meta name="Resource-type" content="Document"/>
 
 
-    <link rel="stylesheet" type="text/css" href="libs/fullPage.js-master/jquery.fullPage.css" />
-    <link rel="stylesheet" type="text/css" href="libs/fullPage.js-master/examples/examples.css" />
-    <link rel="stylesheet" type="text/css" href="less/bootstrap/fonts/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="less/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/less" href="less/custom/_frontpage.less" />
-    <link rel="stylesheet" type="text/less" href="less/custom/_loading_kit.less" />
+    <link rel="stylesheet" type="text/css" href="main.css"/>
 
     <!--[if IE]>
     <script type="text/javascript">
-        var console = { log: function() {} };
+        var console = {
+            log: function () {
+            }
+        };
     </script>
     <![endif]-->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
+    <!-- JS -->
     <script type="text/javascript" src="libs/fullPage.js-master/jquery.fullPage.js"></script>
     <script type="text/javascript" src="libs/fullPage.js-master/examples/examples.js"></script>
-    <script type="text/javascript" src="js/less.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/services/NerdService.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
+
 </head>
 
-<body>
+<body ng-app="sampleApp">
 
-    <div class="sk-folding-cube" id="loading" style="display:block">
-        <div class="sk-cube1 sk-cube"></div>
-        <div class="sk-cube2 sk-cube"></div>
-        <div class="sk-cube4 sk-cube"></div>
-        <div class="sk-cube3 sk-cube"></div>
-    </div>
+<div class="sk-folding-cube" id="loading" style="display:block">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+</div>
 
 <div id="main" style="visibility:hidden;overflow-y:scroll">
 
-    <!-- Top menu -->
-    <nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="top-navbar-1">
-                <ul class="nav navbar-nav">
-                </ul>
-                <div class="navbar-text navbar-right">
-                    <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ba-thinh-tran-a10858140/" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+    <div id="fullpage">
+
+        <!-- Top menu -->
+        <div id="nav" class="navbar navbar-inverse navbar-fixed-top" data-spy="affix">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#slide1" class="navbar-brand top-links">Home</a>
+                    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav top-links">
+                        <li><a href="/#">League Analyzer</a></li>
+                        <li><a href="/#">Minigame</a></li>
+                    </ul>
+                    <ul class="nav pull-right navbar-nav top-icons">
+                        <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ba-thinh-tran-a10858140/" target="_blank"><i
+                                class="fa fa-linkedin-square"></i></a>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </nav>
+        </div><!-- /.navbar -->
 
-<div id="fullpage">
-    <div class="section active" id="section0">
-        <div class="slide scroll" id="slide3"><h1></h1>
+        <div class="section active" id="section0">
+
+            <div class="slide scroll" id="slide3">
+                <h1></h1>
+            </div>
+            <div class="slide active" id="slide1">
+                <h1>Welcome to my personal homepage</h1>
+                <div class="slide" id="slide2"><h1></h1></div>
+            </div>
         </div>
-        <div class="slide active" id="slide1"><h1>Welcome to my personal homepage</h1></div>
-        <div class="slide" id="slide2"><h1></h1></div>
+
+        <div class="wrap" id="sectionContent">
+            <section id="section03" class="demo" style="display:none">
+                <a href="#sectionContent"><span></span></a>
+            </section>
+            <div id="contentProfile" style="display:none" ng-controller="MainController">
+                <!-- ANGULAR DYNAMIC CONTENT -->
+                <div ng-view></div>
+
+                <h1>This is like a normal website.</h1>
+
+                Just place the rest of your page after the fullpage wrapper and use the option `fitToSection:false` and
+                `autoScrolling:false`. And enjoy a great single slider.
+                <script src="https://gist.github.com/alvarotrigo/368e6d6ad3c5c0e98d3c.js"></script>
+                <script src="https://gist.github.com/alvarotrigo/c74366b59ecba2f9c3da.js"></script>
+
+                <h1> Rest of your site </h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula
+                    fermentum
+                    a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi,
+                    eu
+                    elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam
+                    fringilla
+                    fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi
+                    pharetra.
+                    Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam
+                    vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis
+                    dis
+                    parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
+                </p>
+                <p>
+                    Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor.
+                    Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed
+                    scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a
+                    velit
+                    purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac
+                    ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
+                </p>
+                <div class="box">
+                    In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer
+                    at
+                    dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar
+                    ut.
+                    Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien
+                    bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi
+                    mauris
+                    dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula
+                    nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo
+                    gravida,
+                    commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque
+                    velit.
+                    Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam
+                    diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut,
+                    suscipit vehicula tortor.
+                </div>
+                <p>
+                    Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh.
+                    Pellentesque
+                    dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus
+                    non,
+                    condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet
+                    posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
+                </p>
+                <p>
+                    Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci,
+                    tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales
+                    urna.
+                    Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at
+                    eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas
+                    blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
+                </p>
+
+
+                <h1> Rest of your site </h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula
+                    fermentum
+                    a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi,
+                    eu
+                    elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam
+                    fringilla
+                    fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi
+                    pharetra.
+                    Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam
+                    vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis
+                    dis
+                    parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
+                </p>
+                <p>
+                    Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor.
+                    Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed
+                    scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a
+                    velit
+                    purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac
+                    ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
+                </p>
+                <p>
+                    In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer
+                    at
+                    dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar
+                    ut.
+                    Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien
+                    bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi
+                    mauris
+                    dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula
+                    nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo
+                    gravida,
+                    commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque
+                    velit.
+                    Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam
+                    diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut,
+                    suscipit vehicula tortor.
+                </p>
+                <p>
+                    Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh.
+                    Pellentesque
+                    dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus
+                    non,
+                    condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet
+                    posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
+                </p>
+                <div class="box">
+                    Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci,
+                    tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales
+                    urna.
+                    Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at
+                    eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas
+                    blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
+                </div>
+
+
+                <h1> Rest of your site </h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula
+                    fermentum
+                    a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi,
+                    eu
+                    elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam
+                    fringilla
+                    fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi
+                    pharetra.
+                    Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam
+                    vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis
+                    dis
+                    parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
+                </p>
+                <p>
+                    Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor.
+                    Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed
+                    scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a
+                    velit
+                    purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac
+                    ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
+                </p>
+                <p>
+                    In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer
+                    at
+                    dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar
+                    ut.
+                    Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien
+                    bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi
+                    mauris
+                    dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula
+                    nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo
+                    gravida,
+                    commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque
+                    velit.
+                    Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam
+                    diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut,
+                    suscipit vehicula tortor.
+                </p>
+                <p>
+                    Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh.
+                    Pellentesque
+                    dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus
+                    non,
+                    condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet
+                    posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
+                </p>
+                <p>
+                    Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci,
+                    tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales
+                    urna.
+                    Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at
+                    eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas
+                    blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
+                </p>
+
+            </div>
+            <div id="contentWork" ng-controller="NerdController" style="display:none">
+
+                <!-- ANGULAR DYNAMIC CONTENT -->
+                <div ng-view></div>
+                <p>some work content here</p>
+            </div>
+
+        </div>
     </div>
-    <section id="section03" class="demo" style="display:none">
-        <a href="#sectionContent"><span></span></a>
-    </section>
-</div>
-
-<div class="wrap" id="sectionContent">
-    <div id="contentProfile" style="display:none">
-        <h1>This is like a normal website.</h1>
-
-        Just place the rest of your page after the fullpage wrapper and use the option `fitToSection:false` and `autoScrolling:false`. And enjoy a great single slider.
-        <script src="https://gist.github.com/alvarotrigo/368e6d6ad3c5c0e98d3c.js"></script>
-        <script src="https://gist.github.com/alvarotrigo/c74366b59ecba2f9c3da.js"></script>
-
-        <h1> Rest of your site </h1>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula fermentum a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi, eu elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam fringilla fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi pharetra. Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
-        </p>
-        <p>
-            Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor. Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a velit purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
-        </p>
-        <div class="box">
-            In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer at dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar ut. Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi mauris dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo gravida, commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque velit. Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut, suscipit vehicula tortor.
-        </div>
-        <p>
-            Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh. Pellentesque dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus non, condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
-        </p>
-        <p>
-            Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci, tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales urna. Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
-        </p>
-
-
-        <h1> Rest of your site </h1>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula fermentum a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi, eu elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam fringilla fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi pharetra. Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
-        </p>
-        <p>
-            Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor. Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a velit purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
-        </p>
-        <p>
-            In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer at dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar ut. Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi mauris dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo gravida, commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque velit. Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut, suscipit vehicula tortor.
-        </p>
-        <p>
-            Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh. Pellentesque dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus non, condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
-        </p>
-        <div class="box">
-            Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci, tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales urna. Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
-        </div>
-
-
-        <h1> Rest of your site </h1>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula fermentum a sit amet nulla. Donec sed tellus tempor ligula condimentum placerat. Vivamus placerat magna nisi, eu elementum risus imperdiet sit amet. Nunc varius dictum porttitor. Morbi rhoncus magna in quam fringilla fringilla in in odio. Quisque fringilla ante vitae tellus fringilla, condimentum tristique mi pharetra. Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam vehicula vel. Aenean non mattis purus, eget lobortis odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam cursus elit nec aliquam consequat.
-        </p>
-        <p>
-            Nullam sem orci, tincidunt non lorem quis, ultricies blandit nisl. Donec eget sollicitudin tortor. Integer ut orci sit amet ipsum porta feugiat sit amet ut nulla. Vestibulum auctor, tortor sed scelerisque consectetur, nisl tellus placerat tortor, non euismod nisi risus vitae ipsum. Morbi a velit purus. Nam euismod porta sapien, sed scelerisque nulla lacinia vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam at eleifend ligula, in eleifend sapien.
-        </p>
-        <p>
-            In elementum nec quam et eleifend. Ut nec erat fermentum, mattis leo non, fringilla tellus. Integer at dui nibh. Etiam facilisis fermentum turpis. Nulla malesuada iaculis nisl, ac accumsan felis pulvinar ut. Proin porttitor nulla libero, vel tristique erat faucibus quis. Aliquam pharetra enim et sapien bibendum, interdum viverra lectus sagittis. Vivamus pharetra, risus quis malesuada interdum, mi mauris dignissim mi, ac hendrerit orci nulla vel felis. Vivamus dapibus, nisi vel viverra tincidunt, ligula nunc sagittis elit, eget lacinia tellus velit et leo. Curabitur a tortor pretium, aliquam justo gravida, commodo ipsum. In fermentum lorem eu tincidunt consequat. Donec nec blandit ipsum, id scelerisque velit. Aenean vel ultrices ligula, at imperdiet dolor. Sed euismod turpis et nibh adipiscing feugiat. Etiam diam leo, sollicitudin eu suscipit non, laoreet sit amet dui. In augue purus, semper in blandit ut, suscipit vehicula tortor.
-        </p>
-        <p>
-            Praesent id varius neque. Nunc risus elit, tincidunt eu nulla vitae, adipiscing porta nibh. Pellentesque dignissim dolor ligula, eu vestibulum justo elementum ac. In a risus ullamcorper, iaculis lectus non, condimentum elit. Pellentesque ac felis nec mauris venenatis elementum. In porttitor mauris sit amet posuere scelerisque. Nunc interdum arcu sit amet libero fermentum, nec consequat risus dignissim.
-        </p>
-        <p>
-            Curabitur dui elit, tristique eget venenatis et, scelerisque mattis arcu. Pellentesque lectus orci, tempus in enim et, condimentum rutrum magna. Mauris nec eros viverra, facilisis nibh ut, sodales urna. Pellentesque nec neque in ipsum imperdiet egestas vitae vel augue. Integer felis eros, dictum at eleifend aliquet, lacinia non neque. Curabitur eget condimentum urna, eget sodales lectus. Maecenas blandit ac neque id elementum. Phasellus ultricies vestibulum elit ut sagittis. Nam ut porta mi.
-        </p>
-
-    </div>
-    <div id="contentWork" style="display:none">
-    <p>some work content here</p>
-    </div>
-
-</div>
 </div>
 
 </body>
