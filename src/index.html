@@ -56,28 +56,33 @@
 
     <div id="fullpage">
 
-        <!-- Top menu -->
-        <div id="nav" class="navbar navbar-inverse navbar-fixed-top" data-spy="affix">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="#slide1" class="navbar-brand top-links">Home</a>
-                    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav top-links">
-                        <li><a href="javascript:location.href = 'league'" >League Analyzer</a></li>
-                        <li><a href="/#">Minigames</a></li>
-                    </ul>
-                    <ul class="nav pull-right navbar-nav top-icons">
-                        <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/ba-thinh-tran-a10858140/" target="_blank"><i
-                                class="fa fa-linkedin-square"></i></a>
-                    </ul>
-                </div>
+        <nav id="nav" class="nav navbar navbar-expand-lg navbar-trans navbar-inverse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:location.href = 'league'">League Analyzer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="javascript:location.href = '/'">Minigame</a>
+                    </li>
+                </ul>
+                <ul class="nav pull-right navbar-nav top-icons">
+                    <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
+                    &nbsp;
+                    <a href="https://www.linkedin.com/in/ba-thinh-tran-a10858140/" target="_blank"><i
+                            class="fa fa-linkedin-square"></i></a>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                </form>
             </div>
-        </div><!-- /.navbar -->
+        </nav>
 
         <div class="section active" id="section0">
 
@@ -85,7 +90,7 @@
                 <h1></h1>
             </div>
             <div class="slide active" id="slide1">
-                <h1>Welcome to my personal homepage</h1>
+                <h1 class="h1-white">Welcome to my personal homepage</h1>
                 <div class="slide" id="slide2"><h1></h1></div>
             </div>
         </div>

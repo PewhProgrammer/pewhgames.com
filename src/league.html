@@ -11,8 +11,7 @@
     <meta name="Resource-type" content="Document"/>
 
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="main.css"/>
     <!--[if IE]>
     <script type="text/javascript">
         var console = {
@@ -41,37 +40,40 @@
 
 <body ng-app="sampleApp">
 
-<nav class="navbar navbar-inverse bg-inverse">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">grind.io v.1.1</a>
-        </div>
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">grind.io v.1.1</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">home <span class="sr-only">(current)</span></a></li>
-                <li><a href="javascript:location.href = '/'">bout</a></li>
-                <li><a href="javascript:location.href = '/'">Contact</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:location.href = '/'">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="javascript:location.href = '/'">Contact</a>
+            </li>
+        </ul>
+        <ul class="nav pull-right navbar-nav top-icons">
+            <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
+            &nbsp;
+            <a href="https://www.linkedin.com/in/ba-thinh-tran-a10858140/" target="_blank"><i
+                    class="fa fa-linkedin-square"></i></a>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+        </form>
+    </div>
 </nav>
 
+<!-- /.Navbar TOP -->
+
 <div class="container">
-    <br><br><br>
-    <h1>League Games Analyzer</h1>
+    <br>
+    <h1 class="h1-black">League Games Analyzer</h1>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -80,8 +82,7 @@
             <div class="col">
                 <a href="">
                     <button type="button" class="btn btn-info" id="getRecentGames">
-                        Tuans recent Games</button>
-                </a>
+                        Tuans recent Games</button> </a>
             </div>
         </div>
     </div>
@@ -89,38 +90,17 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                1 of 2
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             </div>
             <div class="col">
-                1 of 2
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                1 of 3
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </div>
         </div>
     </div>
-    <div class="jumbotron text-center"  ng-controller="LeagueController">
+    <div class="jumbotron text-center stats-view"  ng-controller="LeagueController">
         <!-- ANGULAR DYNAMIC CONTENT -->
         <div ng-view></div>
     </div>
-
-    <div class="container" style="display:none" id='timeline'>
-        <div class="page-header">
-            <h1 id="timeline1">Timeline</h1>
-        </div>
-        <ul class="timeline" id="timelinelist">
-
-        </ul>
-    </div>
-
 
 </div>
 <!-- /.container -->

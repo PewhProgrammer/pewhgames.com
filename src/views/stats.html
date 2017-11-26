@@ -1,23 +1,34 @@
 
 <!-- public/views/stats.html -->
 
-<div class="jumbotron text-center">
-    <h1>Nerds and Proud</h1>
-
+<div class="">
     <table class="table">
+        <thead>
         <tr>
+            <th scope="col">#</th>
+            <th scope="col">KDA</th>
+            <th scope="col">KP%</th>
+            <th scope="col">GPM</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="bg-success">
+            <th scope="row">19.11</th>
             <th>KDA
             </th>
             <th>KP%
             </th>
             <th>GPM
+            </th></tr>
+        <tr class="bg-danger">
+            <th scope="row">19.11</th>
+            <th>KDA
             </th>
-        </tr>
-        <tr class="table-active"> hey </tr>
-        <tr class="table-success">...</tr>
-        <tr class="table-warning">...</tr>
-        <tr class="table-danger">...</tr>
-        <tr class="table-info">...</tr>
+            <th>KP%
+            </th>
+            <th>GPM
+            </th></tr>
+        </tbody>
     </table>
 
     <p>{{ tagline }}</p>
