@@ -5,6 +5,10 @@
 // grab the nerd model we just created
 let Nerd = require('./models/nerd');
 const path = require('path');
+const request = require('request');
+
+// config files
+const db = require('./../config/db');
 
 module.exports = function (app) {
 
@@ -45,6 +49,29 @@ module.exports = function (app) {
                 res.json(nerds);
             });
         });
+
+    app.route(__prefix + '/matches/:nerd_id')
+    // get the riot matches with that summoner id (accessed at GET http://localhost:8080/api/matches/:nerd_id)
+        .get(function (req, res) {
+            Nerd.findById(req.params.nerd_id, function (err, nerd) {
+                const url =
+                    `https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/226142831?api_key=${db.riotapi_key}`;
+                if (err){
+                    res.send(err);
+                }
+
+                request(url, function (error, response, body) {
+                    console.log('query: ' + url);
+                    console.log('error:', error); // Print the error if one occurred
+                    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                    console.log('body:', body); // Print the HTML for the Google homepage.
+                    //return res.json({message: 'Nerd updated!' + body});
+                    return res.json(body);
+                });
+
+                //res.json(nerd);
+            });
+        })
 
     app.route(__prefix + '/nerds/:nerd_id')
     // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)

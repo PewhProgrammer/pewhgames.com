@@ -15,6 +15,9 @@ angular.module('NerdService', []).factory('Nerd', ['$http', function($http) {
             },
             delete: function (id) {
                 return $http.delete('/api/nerds/' + id);
+            },
+            getWasabiGames: function(id){
+                return $http.get('/api/matches/'+id);
             }
         }
 
