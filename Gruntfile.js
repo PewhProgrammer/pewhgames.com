@@ -28,11 +28,24 @@ module.exports = function(grunt)
                 }
             }
         },
-        sync: {
+        /*sync: {
             copy_resources_to_www: {
                 files: [
-                    { cwd: 'src', src:["js/**", "libs/**", "fonts/**", "img/**","php/**","assets/**","views/**", "index.html"], dest: 'www' },
-                    { cwd: 'src', src: 'res/**', dest: 'www' }
+                    { cwd: 'src', src:["js/**", "libs/**", "fonts/**",'assets/**', "views/**", "index.html"], dest: 'www' },
+                    { cwd: 'src', src: "libs/**", dest: 'www' }
+                ]
+            }
+        },*/
+        copy: {
+            for_www: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: "src/",
+                        src: ["js/**", "libs/**", "fonts/**", "views/**",'assets/**', "index.html","league.html"],
+                        dest: "www"
+                    }
+
                 ]
             }
         },
@@ -65,16 +78,18 @@ module.exports = function(grunt)
             },
             others: {
                 files: [
+                    'src/league.html',
                     'src/index.html',
                     'src/js/**',
+                    'src/views/**',
                 ],
-                tasks:["sync:copy_resources_to_www", "uglify"]
+                tasks:[ "uglify",'copy:for_www']
             }
         }
 
     });
 
-    grunt.registerTask("default", ["clean", "less",  "uglify:development", "watch","sync:copy_resources_to_www"]);
-    grunt.registerTask("run", ["clean", "less",  "uglify:development", "watch"]);
+    grunt.registerTask("default", ["clean", "less",  "uglify:development", "watch","copy:for_www"]);
+    grunt.registerTask("run", ["clean", "less",  "uglify:development", "watch","copy:for_www"]);
 
 };

@@ -6,7 +6,6 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider
-
     // home page
         .when('/profile', {
             templateUrl: 'views/home.html',
@@ -17,7 +16,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/work', {
             templateUrl: 'views/nerd.html',
             controller: 'NerdController'
-        });
+        })
+        .when('/league', {
+            templateUrl: 'views/stats.html',
+            controller: 'LeagueController'
+        })
+        ;
         //.otherwise({ redirectTo: '/' });
 
     //$locationProvider.html5Mode(true);

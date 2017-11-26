@@ -3,5 +3,5 @@
  */
 
 module.exports = {
-    url : 'mongodb://localhost/stencil-dev'
+    url : 'mongodb://pewh:Badminton123@ds151208.mlab.com:51208/nerd'
 }

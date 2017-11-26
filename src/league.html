@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>League Analyzer</title>
+    <meta name="author" content="Alvaro Trigo Lopez"/>
+    <meta name="description" content="fullPage full-screen backgrounds."/>
+    <meta name="keywords" content="fullpage,jquery,full-screen"/>
+    <meta name="Resource-type" content="Document"/>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        var console = {
+            log: function () {
+            }
+        };
+    </script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/controllers/LeagueCtrl.js"></script>
+    <script src="js/services/NerdService.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+
+<body ng-app="sampleApp">
+
+<nav class="navbar navbar-inverse bg-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">grind.io v.1.1</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">home <span class="sr-only">(current)</span></a></li>
+                <li><a href="javascript:location.href = '/'">bout</a></li>
+                <li><a href="javascript:location.href = '/'">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <br><br><br>
+    <h1>League Games Analyzer</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Display latest games and analysis on each one
+            </div>
+            <div class="col">
+                <a href="">
+                    <button type="button" class="btn btn-info" id="getRecentGames">
+                        Tuans recent Games</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                1 of 2
+            </div>
+            <div class="col">
+                1 of 2
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col">
+                1 of 3
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron text-center"  ng-controller="LeagueController">
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
+    </div>
+
+    <div class="container" style="display:none" id='timeline'>
+        <div class="page-header">
+            <h1 id="timeline1">Timeline</h1>
+        </div>
+        <ul class="timeline" id="timelinelist">
+
+        </ul>
+    </div>
+
+
+</div>
+<!-- /.container -->
+</body>
+
+
+</html>

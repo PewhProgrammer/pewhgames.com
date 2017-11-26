@@ -4,7 +4,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Background images - fullPage.js</title>
+    <title>pewhgames</title>
     <meta name="author" content="Alvaro Trigo Lopez"/>
     <meta name="description" content="fullPage full-screen backgrounds."/>
     <meta name="keywords" content="fullpage,jquery,full-screen"/>
@@ -36,6 +36,7 @@
     <!-- ANGULAR CUSTOM -->
     <script src="js/controllers/MainCtrl.js"></script>
     <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/controllers/LeagueCtrl.js"></script>
     <script src="js/services/NerdService.js"></script>
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
@@ -66,8 +67,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav top-links">
-                        <li><a href="/#">League Analyzer</a></li>
-                        <li><a href="/#">Minigame</a></li>
+                        <li><a href="javascript:location.href = 'league'" >League Analyzer</a></li>
+                        <li><a href="/#">Minigames</a></li>
                     </ul>
                     <ul class="nav pull-right navbar-nav top-icons">
                         <a href="https://github.com/PewhProgrammer" target="_blank"><i class="fa fa-github"></i></a>
@@ -93,7 +94,7 @@
             <section id="section03" class="demo" style="display:none">
                 <a href="#sectionContent"><span></span></a>
             </section>
-            <div id="contentProfile" style="display:none" ng-controller="MainController">
+            <div id="contentProfile" style="display:none" ng-controller="LeagueController">
                 <!-- ANGULAR DYNAMIC CONTENT -->
                 <div ng-view></div>
 
@@ -279,7 +280,6 @@
 
             </div>
             <div id="contentWork" ng-controller="NerdController" style="display:none">
-
                 <!-- ANGULAR DYNAMIC CONTENT -->
                 <div ng-view></div>
                 <p>some work content here</p>
