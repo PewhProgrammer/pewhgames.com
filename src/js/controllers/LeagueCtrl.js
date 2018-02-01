@@ -21,10 +21,10 @@ angular.module('LeagueCtrl', []).controller('LeagueController', function($scope,
                         const image = `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${name}.png` ;
                         let myObj = {
                             "champion" : name,
-                            "image" : image//your artist variable,
+                            "image" : image
                         };
                         champs.push(myObj);
-                        console.log(myObj);
+
                     }
                 }
 

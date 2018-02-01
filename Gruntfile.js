@@ -42,7 +42,7 @@ module.exports = function(grunt)
                     {
                         expand: true,
                         cwd: "src/",
-                        src: ["js/**", "libs/**", "fonts/**", "views/**",'assets/**', "index.html","league.html"],
+                        src: ["js/**", "libs/**", "fonts/**", "views/**",'assets/**', "*.html*"],
                         dest: "www"
                     }
 
@@ -78,8 +78,7 @@ module.exports = function(grunt)
             },
             others: {
                 files: [
-                    'src/league.html',
-                    'src/index.html',
+                    'src/*.html',
                     'src/js/**',
                     'src/views/**',
                 ],
@@ -89,7 +88,7 @@ module.exports = function(grunt)
 
     });
 
-    grunt.registerTask("default", ["clean", "less",  "uglify:development", "watch","copy:for_www"]);
-    grunt.registerTask("run", ["clean", "less",  "uglify:development", "watch","copy:for_www"]);
+    grunt.registerTask("default", ["clean", "less","copy:for_www",  "uglify:development", "watch"]);
+    grunt.registerTask("run", ["clean", "less", "copy:for_www", "uglify:development", "watch"]);
 
 };
