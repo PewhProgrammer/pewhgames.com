@@ -22,6 +22,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
+
     <!-- LOCAL JS -->
 
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -47,11 +48,15 @@
             canvas.width = $(window).width() - ($(window).width()* 0.1415);
             canvas.height = $(window).height() - ($(window).height()* 0.007) ;
 
+            var spawnSelector = $("#spawn_icons");
+            spawnSelector.width(canvas.width);
+            spawnSelector.height(canvas.height);
 
             w = canvas.width;
             h = canvas.height;
 
             canvas.addEventListener("mousemove", function (e) {
+                console.log("draw");
                 findxy('move', e)
             }, false);
             canvas.addEventListener("mousedown", function (e) {
@@ -95,6 +100,7 @@
         }
 
         function draw() {
+
             ctx.beginPath();
             ctx.moveTo(prevX, prevY);
             ctx.lineTo(currX, currY);
@@ -117,16 +123,10 @@
             if (m) {
                 ctx.clearRect(0, 0, w, h);
                 document.getElementById("canvasimg").style.display = "none";
+                $(".IconSpawn").remove();
                 socket.emit('clear',{
                 });
             }
-        }
-
-        function save() {
-            document.getElementById("canvasimg").style.border = "2px solid";
-            var dataURL = canvas.toDataURL();
-            document.getElementById("canvasimg").src = dataURL;
-            document.getElementById("canvasimg").style.display = "inline";
         }
 
         function findxy(res, e) {
@@ -175,28 +175,74 @@
 
 
 
+
+
+<div id="spawn_icons" style="position:relative; top:0%">
     <canvas id="can"></canvas>
+</div>
 
 <div class="leagueIconsDiv">
 
-    <img id="control_ward" class="leagueIcons" src="assets/img/league/control_ward.png" alt="missing">
-    <img id="trinket_ward" class="leagueIcons" src="assets/img/league/trinket_ward.png" alt="missing">
+    <div style="margin:5%">
+
+        <div id="draggable" class="draggable" class="ui-widget-content">
+            <img id="control_ward" class="leagueIcons" src="assets/img/league/control_ward.png" alt="missing">
+        </div>
+
+        <img id="trinket_ward" class="leagueIcons" src="assets/img/league/trinket_ward.png" alt="missing">
+
+    </div>
 
     &nbsp;
 
-    <div class="container leagueIconsDivs">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img class="leagueChamps" src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img class="leagueChamps" src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                <img class="leagueChamps" src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
-            </div>
+    <form class="form-inline" style="margin:2%;margin-bottom:5%;">
+        <div class="md-form form-group">
+            <i class="fa fa-pencil fa-3x prefix"></i>
+            <input id="input_champs" class="form-control validate">
         </div>
-    </div>
+    </form>
+
+
+
+    <ul class="list-group" style="margin:2%">
+        <li class="list-group-item">
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+        </li>
+        <li class="list-group-item">
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+            <span class="pull-left ">
+             <img class="leagueChamps"
+                  src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
+           </span>
+        </li>
+    </ul>
+
 
 </div>
 
@@ -210,8 +256,13 @@
     <div style="position:absolute;top:14%;left:89%;">Eraser</div>
     <div style="position:absolute;top:16%;left:91%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
     <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
-    <input type="button" value="save" id="save_btn" size="30" onclick="save()">
-    <input type="button" value="clear" id="clear_btn" size="23" onclick="erase()">
+
+<div >
+    <button type="button" value="clear" id="clear_btn" size="23" onclick="erase()" class="btn btn-primary btn_">Clear</button>
+</div>
+
+
+
 
 
 

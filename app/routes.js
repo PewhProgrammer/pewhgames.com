@@ -130,7 +130,7 @@ module.exports = function (app) {
 
     app.get('/league', function (req, res) {
         //if(req.url.endsWith('.js')) res.sendFile(path.resolve(req.url));
-        res.sendFile(path.resolve('www/league_map.html')); // load our public/index.html file
+        res.sendFile(path.resolve('www/league.html')); // load our public/index.html file
     });
 
     app.get('/league_map', function (req, res) {
