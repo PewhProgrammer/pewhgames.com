@@ -4,12 +4,18 @@ A progressive single-page web application optimized for responsive design.
 
 ### Patch Notes/Changes
 
-[ February ] (Upcoming)
+[ March ] (Upcoming)
 - changing http to https
 - introducing service worker
 - integrating idb and caches
 
-[ January ] (Upcoming)
+
+[ February ] (Upcoming)
+- integrated es6 support for grunt-uglify-es with its harmony version
+- introduced sync states beyond initialization [lolmap]
+- Syncronized all commands among clients and the server [lolmap]
+
+[ January ]
 - implemented foundation for league map
 - integrated websocket.io
 
