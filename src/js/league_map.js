@@ -2,9 +2,9 @@
  * Created by Thinh-Laptop on 01.02.2018.
  */
 
-var socket = io();
-var spawnDrag = 0;
-var canElement;
+const socket = io();
+let spawnDrag = 0;
+let canElement;
 
 socket.on('cursor', function(msg){
     if (canElement != undefined) canElement.clearRect(0, 0, a.width, a.height);
@@ -37,16 +37,17 @@ socket.on('draw', function(msg){
 });
 
 socket.on('spawn', function(msg){
-    spawn(msg.id);
+    console.log(">> Received spawn object: " + msg.id + " id: " + msg.spawnID);
+    spawn(msg);
 });
 
 socket.on('drag', function(msg){
 
-    //console.log("dragging");
-    msg.obj.animate(
-        { left:100, top:100 },
+    //console.log("dragging: " + JSON.stringify(msg.obj));
+    $("#draggable_" + msg.obj ).animate(
+        { left:interpolate(msg.x,0,msg.dimension.width,0,canvas.width), top:interpolate(msg.y,0,msg.dimension.height,0,canvas.height)
+        },
         {
-            duration: 1000,
             progress: function(draggable, x, y ){
                 scale(draggable.elem.offsetLeft, draggable.elem.offsetTop);
             }
@@ -62,43 +63,49 @@ function interpolate(value, oldMin, oldMax, newMin, newMax){
 socket.on('clear', function(){
     ctx.clearRect(0, 0, w, h);
     $(".IconSpawn").remove();
+    spawnDrag = 0;
 });
 
 
 $(window).load(function() {
     $("#control_ward").on("click",function(){
-        spawn("control_ward");
+        socket.emit('spawn',{
+            id:"control_ward",
+            pos: {x: 0, y:0}
+        })
     });
 
 
     $("#trinket_ward").on("click",function(){
-        spawn("trinket_ward");
+        socket.emit('spawn',{
+            id:"trinket_ward",
+            pos: {x: 0, y:0}
+        })
     });
 });
 
 function spawn(obj){
-    var id = "draggable" + spawnDrag;
-    $("#spawn_icons").prepend('<div id="draggable_'+spawnDrag+'" style="position:absolute;left:85%;top:50%;" class="ui-widget-content leagueIcons">'+
-        '<img class="leagueIcons IconSpawn" src="assets/img/league/'+ obj +'.png" alt="missing">'+
+    console.log("spawned: "+ obj.spawnID);
+    const id = "draggable" + obj.spawnID;
+    $("#spawn_icons").prepend('<div id="draggable_'+obj.spawnID+'" style="position:absolute;left:85%;top:50%;" class="ui-widget-content leagueIcons">'+
+        '<img class="leagueIcons IconSpawn" src="assets/img/league/'+ obj.id +'.png" alt="MISSING">'+
         '</div>');
 
-    $( "#draggable_" + spawnDrag ).draggable({
-        drag: function( event, ui ) {
-            scale(ui.offset.left, ui.offset.top);
-
+    $( "#draggable_" + obj.spawnID ).draggable({
+        stop: function(event, ui)
+        {
             socket.emit('drag',{
                 x:ui.offset.left,
                 y:ui.offset.top,
-                obj:this
+                dimension:{width: canvas.width,height: canvas.height},
+                obj:obj.spawnID
             });
+        },
+        drag: function( event, ui ) {
+            scale(ui.offset.left, ui.offset.top);
         }
     });
-    spawnDrag++;
-    //console.log(obj + " spawned");
 
-    socket.emit('spawn',{
-        id:obj
-    })
 }
 
 function scale(left, top){
