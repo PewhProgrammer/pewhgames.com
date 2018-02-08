@@ -49,7 +49,7 @@ socket.on('drag', function(msg){
         },
         {
             progress: function(draggable, x, y ){
-                scale(draggable.elem.offsetLeft, draggable.elem.offsetTop);
+                //scale(draggable.elem.offsetLeft, draggable.elem.offsetTop);
             }
         });
 });
@@ -66,12 +66,45 @@ socket.on('clear', function(){
     spawnDrag = 0;
 });
 
+let substringMatcher = function(strs) {
+    return function findMatches(q, cb) {
+        let matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+                matches.push(str);
+            }
+        });
+
+        cb(matches);
+    };
+};
+
+const states = [ 'Shaco','DrMundo','Rammus','Anivia','Irelia','Yasuo','Sona','Kassadin','Zac','Gnar','Karma','Corki','Gangplank','Janna','Jhin','Kindred','Braum',
+    'Ashe','Tryndamere','Jax','Morgana','Zilean','Singed','Evelynn','Twitch','Galio','Velkoz','Olaf','Taliyah','Annie','Leblanc','Karthus',
+    'Urgot','Xinzhao','Amumu','TwistedFate','Chogath','FiddleSticks','Vladimir','Warwick','Teemo','Tristana','Sivir','Soraka','Ryze','Sion',
+    'MasterYi','Alistar','MissFortune','Nunu','Rengar','Volibear','Fizz','Graves','Ahri','Shyvana','Lux','Xerath','Tresh','Shen','Jinx','Kogmaw','TahmKench','Riven',
+    'Talon','Malzahar','Kayle','Kalista','Reksai','Illaoi','Leona','Gragas','Lulu','Poppy','Fiora','Udyr','Ziggs','Viktor','Sejuani','Varus','Nautilus','Draven','Bard',
+    'Mordekaiser','Ekko','Yorick','Pantheon','Ezreal','Garen','Akali','Kennen','Vayne','Jayce','Cassiopeia','Lissandra','Rumble','Khazix','Darius','Hecarim','Skarner','Lucian',
+    'Heimerdinger','Nasus','Zed','Nidalee','Syndra','Quinn','JarvanIV','Renekton','Maokai','AurelionSol','Nocturne','Katarina','LeeSin','MonkeyKing','Brand','Azir','Elise','Diana',
+    'Nami','Orianna','Aatrox','Zyra','Trundle','Veigar','Taric','Caitlyn','Blitzcrank','Malphite','Vi','Swain'
+];
+
+
 
 $(window).load(function() {
     $("#control_ward").on("click",function(){
         socket.emit('spawn',{
             id:"control_ward",
-            pos: {x: 0, y:0}
+            pos:{x: 0, y:0}
         })
     });
 
@@ -82,6 +115,22 @@ $(window).load(function() {
             pos: {x: 0, y:0}
         })
     });
+
+    $('.js-typeahead').typeahead({
+            highlight: true,
+            minLength: 1,
+            limit: 5,
+            order: "asc",
+            offset: true,
+            searchOnFocus: true,
+            blurOnTab: false,
+            hint: true,
+            emptyTemplate: 'no result for {{query}}',
+        },
+        {
+            name: 'states',
+            source: substringMatcher(states)
+        });
 });
 
 function spawn(obj){
@@ -100,15 +149,9 @@ function spawn(obj){
                 dimension:{width: canvas.width,height: canvas.height},
                 obj:obj.spawnID
             });
-        },
-        drag: function( event, ui ) {
-            scale(ui.offset.left, ui.offset.top);
         }
     });
 
 }
 
-function scale(left, top){
-    //your scaling logic here here
-    //console.log("scaling", left, top);
-}
+
