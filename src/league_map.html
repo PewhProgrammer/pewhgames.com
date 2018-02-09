@@ -229,10 +229,14 @@
     <div  id="black" onclick="color(this)"></div>
     <div style="position:absolute;top:14%;left:89%;">Eraser</div>
     <div style="position:absolute;top:16%;left:91%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
-    <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+    <img id="canvasimg" style="position:absolute;top:10%;left:52%;display:none;">
 
 <div >
-    <button type="button" value="clear" id="clear_btn" size="23" onclick="erase()" class="btn btn-primary btn_">Clear</button>
+    <button type="button" value="clear" id="clear_btn" onclick="erase()" class="btn btn-primary btn_">Clear</button>
+</div>
+
+<div class="alert alert-warning" style="display:none">
+    <strong>Warning!</strong> Indicates a warning that might need attention.
 </div>
 
 

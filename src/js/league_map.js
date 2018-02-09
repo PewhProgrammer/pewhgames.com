@@ -71,6 +71,13 @@ socket.on('clear', function(){
     spawnDrag = 0;
 });
 
+socket.on('feedback', function(msg){
+    $(".alert-warning").html("<strong>Warning!</strong> "+msg.msg)
+    .fadeTo(2000, 500).slideUp(500, function(){
+        $("#alert-warning").slideUp(500);
+    });
+});
+
 
 const champs = [ {name: "Shaco", picture: "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/"+[name] +".png"}
     ,{name:"DrMundo", picture: ""},{name:"Rammus", picture: ""},{name:"Anivia", picture: ""},{name:"Irelia", picture: ""},{name:"Yasuo", picture: ""},{name:"Sona", picture: ""},{name:"Kassadin", picture: ""},{name:"Zac", picture: ""},{name:"Gnar", picture: ""},{name:"Karma", picture: ""}
@@ -136,7 +143,7 @@ $(window).load(function() {
             templates: {
                 empty: ' no result for search',
                 suggestion: function(el){
-                    return '<p class="leagueChamps"> <img class="leagueIcons leagueChamps" src="'+el.picture+'" />' + el.name + '</p>'; }
+                    return '<p> <img class="leagueChamps" src="'+el.picture+'" />' + el.name + '</p>'; }
             }
         },
 
@@ -148,7 +155,8 @@ $(window).load(function() {
             type:'champion',
             image:item.picture,
             red:$("#redSideOpt").is(":checked"),
-            pos:{x: 0, y:0}
+            pos:{x: 0, y:0},
+            role: -1
         })
 
         }).on('keyup', function(e) {
@@ -166,9 +174,10 @@ function spawnChamp(champ){
     const id = "draggable" + champ.spawnID;
     let border = "imgBorderRed";
     if(!champ.red) border ="imgBorderBlue";
+    const side = !champ.red ? "red" : "blue"; // ausversehen vertauscht in league_map.less
 
-    $("#spawn_icons").prepend('<div id="draggable_'+champ.spawnID+'" style="position:absolute;left:85%;top:50%;" class="ui-widget-content leagueIcons">'+
-        '<img class="leagueIcons IconSpawn '+border+'" src="'+champ.image+'" alt="MISSING">'+
+    $("#spawn_icons").prepend('<div id="draggable_'+champ.spawnID+'" class="ui-widget-content leagueIcons champRoleSpawn'+champ.role+side+'">'+
+        '<img class="leagueChamps IconSpawn '+border+'" src="'+champ.image+'" alt="MISSING">'+
         '</div>');
 
     $( "#draggable_" + champ.spawnID ).draggable({
