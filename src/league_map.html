@@ -180,6 +180,7 @@
     <canvas id="can"></canvas>
 </div>
 
+
 <div class="leagueIconsDiv">
 
     <div style="margin:5%">
@@ -194,21 +195,21 @@
 
     &nbsp;
 
+    <label class="radio-inline active" style="margin-right:5%"><input type="radio" id = "redSideOpt" name="optradio" checked="">  Red Side                </label>
+    <label class="radio-inline"><input type="radio" id = "blueSideOpt" name="optradio">  Blue Side  </label>
 
-    <img class="leagueChamps"
-         src=http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Aatrox.png class="img-responsive">
-
+    &nbsp;
 
     <form>
         <div class="typeahead__container">
-            <div id="the-basics" class="typeahead__field">
+            <div id="scrollable-dropdown-menu" class="typeahead__field">
 
             <span class="typeahead__query">
                 <input class="js-typeahead"
                        name="q"
                        type="search"
                        autofocus
-                       autocomplete="off"  placeholder="Champions" >
+                       autocomplete="off"  placeholder="Champions" style="min-height: 2rem;min-width:3rem;width:80%;margin-left:5%" >
             </span>
 
 
@@ -216,10 +217,8 @@
         </div>
     </form>
 
-
-
-
 </div>
+
 
     <div id="selectColorDesc">Choose Color</div>
     <div id="green" onclick="color(this)"></div>
