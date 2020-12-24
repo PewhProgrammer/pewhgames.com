@@ -1,25 +1,25 @@
 # PewhGames HomePage
 
-A progressive single-page web application optimized for responsive design.
+A progressive single-page containerized web application optimized for responsive design.
 
 ### Patch Notes/Changes
 
-[ March ] (Upcoming)
-- changing http to https
+[ March '21] (Upcoming)
+- changing http to https (using reverse proxy)
 - introducing service worker
 - integrating idb and caches
 
 
-[ February ] (Upcoming)
+[ February '21] (Upcoming)
 - integrated es6 support for grunt-uglify-es with its harmony version
 - introduced sync states beyond initialization [lolmap]
 - Syncronized all commands among clients and the server [lolmap]
 
-[ January ]
+[ January '18]
 - implemented foundation for league map
 - integrated websocket.io
 
-[ November ]
+[ November '17]
 - adopt ES6 changes
 - introducing <strong>MEAN</strong> stack
 - switch from apache to node webserver
@@ -33,4 +33,4 @@ A progressive single-page web application optimized for responsive design.
 * [Grunt]        
 
 ### Author
-* **Ba Thinh Tran** - *Ongoing work*
+* **Ba Thinh Tran** - *Paused Work*
